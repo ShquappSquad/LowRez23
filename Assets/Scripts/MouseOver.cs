@@ -8,16 +8,20 @@ using UnityEngine.EventSystems;
 
 public class MouseOver : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
+    public Animator animator;
+
     //Triggers when mouse hovers over attached object
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Mouse is over the Ship");
+        animator.SetTrigger("Hovered");
+        //Debug.Log("Mouse is over the Ship");
     }
 
     //Triggers when mouse is no longer hovering over attached object
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Mouse is NOT over the Ship");
+        animator.ResetTrigger("Hovered");
+        //Debug.Log("Mouse is NOT over the Ship");
     }
 
     //Triggers when mplayer clicks on attached object
