@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public float speed = 3f;
+    public Camera mainCam;
 
     private float horizontal;
     private float vertical;
-    public float speed = 3f;
     private bool isFacingRight = true;
 
     // Update is called once per frame
