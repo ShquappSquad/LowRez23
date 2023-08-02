@@ -8,14 +8,15 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     private float horizontal;
-    private float speed = 1f;
+    private float vertical;
+    public float speed = 3f;
     private bool isFacingRight = true;
 
     // Update is called once per frame
     void Update()
     {
         //Calculate movement
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed, vertical * speed);
 
         //Check for player direction
         if(isFacingRight && horizontal > 0f)
@@ -31,11 +32,21 @@ public class PlayerMovement : MonoBehaviour
     // Flip the sprite depending on the last direction moved
     private void Flip()
     {
-        //setTrigger to left or right
+        if(isFacingRight == true)
+        {
+            Debug.Log("Flipping to face left");
+        }
+        else if(isFacingRight == false)
+        {
+            Debug.Log("Flipping to face right");
+        }
+
+        isFacingRight = !isFacingRight;
     }
 
-    private void Move(InputAction.CallbackContext context)
+    public void Move(InputAction.CallbackContext context)
     {
        horizontal = context.ReadValue<Vector2>().x; 
+       vertical = context.ReadValue<Vector2>().y;
     }
 }
